@@ -1,6 +1,6 @@
-# Sms Sender Spring Boot Starter
+# Sms Delivery Spring Boot Starter
 
-Spring Boot application integrates sms-sender, support various sms engines.
+Spring Boot application integrates sms-delivery, support various sms engines.
 
 ## Quickstart
 
@@ -8,19 +8,19 @@ Spring Boot application integrates sms-sender, support various sms engines.
 
 ```xml
     <dependency>
-        <groupId>cn.unikue.springstarter</groupId>
-        <artifactId>sms-sender-spring-boot-starter</artifactId>
+        <groupId>com.jiovan.spring.starter</groupId>
+        <artifactId>sms-delivery-spring-boot-starter</artifactId>
         <version>LATEST</version>
     </dependency>
 ```
 
-> By default, this starter will auto take effect, you can turn it off by `spring.sms-sender.enabled = false`
+> By default, this starter will auto take effect, you can turn it off by `jiovan.sms-delivery.enabled = false`
 
-- Configure Spring Boot `application.yml` with prefix `spring.sms-sender`
+- Configure Spring Boot `application.yml` with prefix `jiovan.sms-delivery`
 
 ```yml
-spring:
-    sms-sender:
+jiovan:
+    sms-delivery:
         sender-type: 'tencent'
         aliyun:
             access-key-id: 'your-access-key'
@@ -34,7 +34,7 @@ spring:
             default-sign-name: 'your-default-sign-name'
 ```
 
-- Then, in your code, you can use `SmsSenderComposer` to send and query sms
+- Then, in your code, you can use `SmsDeliverySender` to send and query sms
 
 ```java
 @Service
@@ -66,7 +66,7 @@ public class DemoService {
 
 ## Document
 
-- Github: https://github.com/unikueltd/sms-sender-spring-boot-starter
+- Github: https://github.com/jiovan-labs/sms-delivery-spring-boot-starter
 
 ## Requirement
 
@@ -80,12 +80,12 @@ See the `NOTICE.txt` file for required notices and attributions.
 
 ## Donation
 
-You like this package? Then [donate to us](https://unikue.cn/donation) to support the development.
+You like this package? Then [donate to us](https://jiovan.com/donation) to support the development.
 
 ## Copyright
 
-Beijing Unikue Network Technology Ltd.
+Beijing Jiovan Technology Ltd.
 
 ## Website
 
-- Unikue: https://unikue.cn
+- Jiovan: https://jiovan.com

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Copyright (c) 2025 Unikue Ltd. All rights reserved.
+ * Copyright (c) 2025 Jiovan Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,18 +20,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cn.unikue.springstarter</groupId>
-    <artifactId>sms-sender-spring-boot-starter</artifactId>
-    <version>3.5.15</version>
+    <groupId>com.jiovan.spring.starter</groupId>
+    <artifactId>sms-delivery-spring-boot-starter</artifactId>
+    <version>4.1.0</version>
 
     <name>${project.artifactId}</name>
-    <description>Unikue Sms Sender for Spring Boot Starter</description>
-    <url>https://github.com/unikueltd/sms-sender-spring-boot-starter</url>
+    <description>Sms Delivery for Spring Boot Starter</description>
+    <url>https://github.com/jiovan-labs/sms-delivery-spring-boot-starter</url>
     <inceptionYear>2025</inceptionYear>
 
     <organization>
-        <name>Unikue Ltd</name>
-        <url>https://unikue.cn</url>
+        <name>Jiovan Ltd</name>
+        <url>https://jiovan.com</url>
     </organization>
 
     <properties>
@@ -47,7 +47,7 @@
         <project.build.resourceEncoding>${file.encoding}</project.build.resourceEncoding>
         <project.reporting.outputEncoding>${file.encoding}</project.reporting.outputEncoding>
 
-        <spring-boot.version>3.5.15</spring-boot.version>
+        <spring-boot.version>4.1.0</spring-boot.version>
 
         <dysmsapi20170525.version>4.6.0</dysmsapi20170525.version>
         <alibabacloud-gateway-spi.version>0.0.3</alibabacloud-gateway-spi.version>
@@ -59,17 +59,17 @@
         <tencentcloud-sdk-java-common.version>3.1.1451</tencentcloud-sdk-java-common.version>
 
         <commons-io.version>2.22.0</commons-io.version>
-        <plexus-spring-condition.version>3.5.15</plexus-spring-condition.version>
+        <lombok.version>1.18.46</lombok.version>
+        <plexus-spring-condition.version>4.1.0</plexus-spring-condition.version>
 
-        <javadoc-docent-maven-plugin.version>2.1.2</javadoc-docent-maven-plugin.version>
-        <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
         <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
-        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
-        <maven-javadoc-plugin.version>3.11.3</maven-javadoc-plugin.version>
-        <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
-        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+        <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
+        <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
+        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
-        <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
+        <central-publishing-maven-plugin.version>0.12.0</central-publishing-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -170,7 +170,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>cn.unikue.commonplexus</groupId>
+            <groupId>com.jiovan.plexus</groupId>
             <artifactId>plexus-spring-condition</artifactId>
             <version>${plexus-spring-condition.version}</version>
             <exclusions>
@@ -184,12 +184,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -276,6 +270,18 @@
                         <arg>-parameters</arg>
                         <arg>-Xlint:unchecked</arg>
                     </compilerArgs>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                            <version>${spring-boot.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                     <excludes>
                         <exclude>**/._*</exclude>
                     </excludes>
@@ -329,16 +335,6 @@
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                         </manifest>
                     </archive>
-                    <taglets>
-                        <taglet>
-                            <tagletClass>cn.unikue.mavenplugin.javadocdocent.taglet.ReferenceTaglet</tagletClass>
-                        </taglet>
-                    </taglets>
-                    <tagletArtifact>
-                        <groupId>cn.unikue.mavenplugin</groupId>
-                        <artifactId>javadoc-docent-maven-plugin</artifactId>
-                        <version>${javadoc-docent-maven-plugin.version}</version>
-                    </tagletArtifact>
                 </configuration>
                 <executions>
                     <execution>
@@ -421,14 +417,14 @@
     </build>
 
     <scm>
-        <url>https://github.com/unikueltd/sms-sender-spring-boot-starter</url>
-        <connection>scm:git:https://github.com/unikueltd/sms-sender-spring-boot-starter.git</connection>
-        <developerConnection>scm:git:https://github.com/unikueltd/sms-sender-spring-boot-starter.git</developerConnection>
+        <url>https://github.com/jiovan-labs/sms-delivery-spring-boot-starter</url>
+        <connection>scm:git:https://github.com/jiovan-labs/sms-delivery-spring-boot-starter.git</connection>
+        <developerConnection>scm:git:https://github.com/jiovan-labs/sms-delivery-spring-boot-starter.git</developerConnection>
     </scm>
 
     <issueManagement>
         <system>Github</system>
-        <url>https://github.com/unikueltd/sms-sender-spring-boot-starter/issues</url>
+        <url>https://github.com/jiovan-labs/sms-delivery-spring-boot-starter/issues</url>
     </issueManagement>
 
     <licenses>
@@ -441,7 +437,7 @@
 
     <developers>
         <developer>
-            <name>Unikue Ltd</name>
+            <name>Jiovan Ltd</name>
         </developer>
         <developer>
             <id>davidhsing</id>
@@ -453,8 +449,8 @@
             <roles>
                 <role>developer</role>
             </roles>
-            <organization>Unikue Ltd</organization>
-            <organizationUrl>https://unikue.cn</organizationUrl>
+            <organization>Jiovan Ltd</organization>
+            <organizationUrl>https://jiovan.com</organizationUrl>
             <timezone>China/Beijing</timezone>
         </developer>
     </developers>
