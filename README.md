@@ -42,7 +42,7 @@ jiovan:
 @Service
 public class DemoService {
     @Autowired
-    private SmsSenderComposer senderComposer;
+    private SmsDeliverySender smsDeliverySender;
 
     public void demoMethod() {
         // Sends a plain sms
@@ -50,18 +50,18 @@ public class DemoService {
         sendParam.setMobilePhones(Collections.singleton("+86-13800138000"));
         sendParam.setTemplateCode("1234567890");
         sendParam.setTemplateParams(Maps.of("verifyCode", "123456"));
-        String receiptId = senderComposer.sendPlainSms(sendParam);
+        String receiptId = smsDeliverySender.sendPlainSms(sendParam);
 
         // Queries the status of a sms
         QuerySmsStatusParam queryParam = new QuerySmsStatusParam();
         sendParam.setMobilePhone("+86-13800138000");
         sendParam.setReceiptId(receiptId);
         sendParam.setSentDate(LocalDate.now());
-        List<QuerySmsStatusResult> queryResults = senderComposer.querySmsStatus(queryParam);
+        List<QuerySmsStatusResult> queryResults = smsDeliverySender.querySmsStatus(queryParam);
 
         // Gets the raw client for advanced usage
-        senderComposer.getRawClient();
-        senderComposer.getRawClientAs(expectType);
+        smsDeliverySender.getRawClient();
+        smsDeliverySender.getRawClientAs(expectType);
     }
 }
 ```
